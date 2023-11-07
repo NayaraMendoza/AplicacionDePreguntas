@@ -44,6 +44,9 @@ fun PantallaPregunta() {
     var color2 by remember {
         mutableStateOf(Color.DarkGray)
     }
+    var color3 by remember {
+        mutableStateOf(Color.DarkGray)
+    }
 Column{
 Text(listaPreguntas[pregunta].texto, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
 Image(listaPreguntas[pregunta].imagen, contentDescription = "")
@@ -53,22 +56,26 @@ Row {
         mensaje = "¡Correcto!"
         color = Color.Green
         color2 = Color.Green
+        color3 = Color.Red
     }
     else {
         mensaje = "Incorrecto."
         color = Color.Red
-        color2 = Color.Red}}, colors = ButtonDefaults.buttonColors(color2))
+        color2 = Color.Red
+        color3 = Color.Green}}, colors = ButtonDefaults.buttonColors(color2))
     {Text("Verdadero")
     }
     Button(onClick = { respuesta = false ; if (respuesta == listaPreguntas[pregunta].resultado){
         mensaje = "¡Correcto!"
         color = Color.Green
-        color2 = Color.Green
+        color3 = Color.Green
+        color2 = Color.Red
     }
     else {
         mensaje = "Incorrecto."
         color = Color.Red
-        color2 = Color.Red}} , colors = ButtonDefaults.buttonColors(color2))
+        color3 = Color.Red
+        color2 = Color.Green}} , colors = ButtonDefaults.buttonColors(color3))
     {
         Text("Falso")
     }
@@ -77,11 +84,13 @@ Row {
         Button(onClick = { if (pregunta == 0){
             mensaje = ""
             color2 = Color.DarkGray
+            color3 = Color.DarkGray
             pregunta = 4
         }
         else {
             mensaje = ""
             color2 = Color.DarkGray
+            color3 = Color.DarkGray
             pregunta--
         }}) {
             Row{
@@ -91,10 +100,14 @@ Row {
         }
         Button(onClick = { if (pregunta == 4){
             mensaje = ""
+            color2 = Color.DarkGray
+            color3 = Color.DarkGray
             pregunta = 0
         }
         else {
             mensaje = ""
+            color2 = Color.DarkGray
+            color3 = Color.DarkGray
             pregunta++
         }}) {
             Row{
