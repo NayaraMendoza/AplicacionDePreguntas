@@ -76,10 +76,12 @@ Row {
     Row {
         Button(onClick = { if (pregunta == 0){
             mensaje = ""
+            color2 = Color.DarkGray
             pregunta = 4
         }
         else {
             mensaje = ""
+            color2 = Color.DarkGray
             pregunta--
         }}) {
             Row{
