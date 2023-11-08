@@ -34,7 +34,8 @@ fun PantallaPregunta() {
     var respuesta by remember{
         mutableStateOf(true)
     }
-    val listaPreguntas = CreaPregunta()
+    var listaPreguntas = CreaPregunta()
+    val PreguntasMezcladas = listaPreguntas.shuffled()
     var mensaje by remember {
         mutableStateOf("")
     }
@@ -48,11 +49,11 @@ fun PantallaPregunta() {
         mutableStateOf(Color.DarkGray)
     }
 Column{
-Text(listaPreguntas[pregunta].texto, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
-Image(listaPreguntas[pregunta].imagen, contentDescription = "")
+Text(PreguntasMezcladas[pregunta].texto, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+Image(PreguntasMezcladas[pregunta].imagen, contentDescription = "")
     Text(mensaje, color= color)
 Row {
-    Button(onClick = { respuesta = true ; if (respuesta == listaPreguntas[pregunta].resultado){
+    Button(onClick = { respuesta = true ; if (respuesta == PreguntasMezcladas[pregunta].resultado){
         mensaje = "¡Correcto!"
         color = Color.Green
         color2 = Color.Green
@@ -65,7 +66,7 @@ Row {
         color3 = Color.Green}}, colors = ButtonDefaults.buttonColors(color2))
     {Text("Verdadero")
     }
-    Button(onClick = { respuesta = false ; if (respuesta == listaPreguntas[pregunta].resultado){
+    Button(onClick = { respuesta = false ; if (respuesta == PreguntasMezcladas[pregunta].resultado){
         mensaje = "¡Correcto!"
         color = Color.Green
         color3 = Color.Green
